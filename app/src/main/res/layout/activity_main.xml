@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".activity.main.MainActivity">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="15dp"
+            android:background="@color/purple_500"
+            app:layout_constraintTop_toTopOf="parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/app_name"
+                android:textColor="@color/white"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:layout_marginBottom="5dp" />
+
+            <androidx.appcompat.widget.SearchView
+                android:id="@+id/searchGitSv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:iconifiedByDefault="false"
+                android:background="@drawable/bg_sv"
+                app:queryHint="Search Github..." />
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <ProgressBar
+            android:id="@+id/searchProgress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
+
+        <include
+            android:id="@+id/noDataCmp"
+            layout="@layout/no_data"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
+
+        <LinearLayout
+            android:id="@+id/dataContainer"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:weightSum="1"
+            android:visibility="gone"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/searchResultRv"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:padding="10dp"
+                tools:listitem="@layout/item_search_result" />
+            <ProgressBar
+                android:id="@+id/loadMoreLoading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:visibility="gone"/>
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
